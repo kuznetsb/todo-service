@@ -1,30 +1,45 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h2>TODO list</h2>
-  <ul>
-    {% for task in task_list %}
-      <li>
-        <div class="row">
-          <h5>{{ task.content }} {% if task.is_done %} Done {% else %} Not done {% endif %}</h5>
-        </div>
-        <div class="row">
-          <p>
-            Created at {{ task.datetime }}
-            {% if task.deadline_datetime %} Deadline: {{ task.deadline_datetime }} {% endif %}
-          </p>
-        </div>
-        <div class="row">
-          <p>
-            Tags:
-            {% for tag in task.tags.all %}
-              {{ tag.name }}
-            {% empty %}
-              No tags yet
-            {% endfor %}
-          </p>
-        </div>
-      </li>
-    {% endfor %}
-  </ul>
+  <div class="row ml-0">
+    <h2>TODO list</h2>
+    <a href="{% url 'todo:task-create' %}" class="btn btn-primary ml-auto mr-0">Add Task</a>
+  </div>
+  <br>
+  {% for task in task_list %}
+    <div class="container-fluid">
+      <div class="row ml-0">
+        <h5>{{ task.content }}</h5>
+        {% if task.is_done %}
+          <h5 class="ml-1 text-success"> Done</h5>
+          <a href="{% url 'todo:task-complete-undo' pk=task.id%}" class="btn btn-secondary ml-auto mr-0">
+            Undo
+          </a>
+        {% else %}
+          <h5 class="ml-1 text-danger"> Not done</h5>
+          <a href="{% url 'todo:task-complete-undo' pk=task.id%}" class="btn btn-success ml-auto mr-0">
+            Complete
+          </a>
+        {% endif %}
+      </div>
+      <div class="row ml-auto">
+      <p>
+        Created at {{ task.datetime }}
+        {% if task.deadline_datetime %} Deadline: {{ task.deadline_datetime }} {% endif %}
+      </p>
+      </div>
+      <div class="row ml-auto">
+        <p>
+          Tags:
+          {% for tag in task.tags.all %}
+            {{ tag.name }}
+          {% empty %}
+            No tags yet
+          {% endfor %}
+        </p>
+      </div>
+      <div class="border-bottom border-secondary"></div>
+    </div>
+    <br>
+  {% endfor %}
 {% endblock %}
