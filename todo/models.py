@@ -17,4 +17,5 @@ class Task(models.Model):
 
     def __str__(self) -> str:
         status = "Completed" if self.is_done else "Not completed"
-        return f"Task: {self.content} created: {self.datetime} status: {status}"
+        return (f"Task: {self.content} "
+                f"created: {self.datetime} status: {status}")
