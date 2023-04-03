@@ -36,6 +36,8 @@
           {% empty %}
             No tags yet
           {% endfor %}
+          <a href="{% url 'todo:task-update' pk=task.id%}" class="btn-link">Update</a>
+          <a href="{% url 'todo:task-delete' pk=task.id%}" class="btn-link">Delete</a>
         </p>
       </div>
       <div class="border-bottom border-secondary"></div>
