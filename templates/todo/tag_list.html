@@ -19,8 +19,8 @@
       {% for tag in tag_list %}
         <tr>
           <th scope="row">{{ tag.name }}</th>
-          <td><a href="{% url 'todo:tag-update' pk=tag.id%}" class="btn btn-link">Update</a></td>
-          <td><a href="{% url 'todo:tag-delete' pk=tag.id%}" class="btn btn-link">Delete</a></td>
+          <td><a href="{% url 'todo:tag-update' pk=tag.id%}" class="btn btn-secondary">Update</a></td>
+          <td><a href="{% url 'todo:tag-delete' pk=tag.id%}" class="btn btn-secondary">Delete</a></td>
         </tr>
       {% endfor %}
       </tbody>
