@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -46,3 +46,10 @@ class TagUpdateView(generic.UpdateView):
 class TagDeleteView(generic.UpdateView):
     model = Tag
     success_url = reverse_lazy("todo:tag-list")
+
+
+def complete_undo_task(request, pk):
+    task = Task.objects.get(id=pk)
+    task.is_done = not task.is_done
+    task.save()
+    return redirect(reverse_lazy("todo:task-list"))
