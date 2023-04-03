@@ -4,6 +4,7 @@ from todo.views import (
     TaskListView,
     TaskCreateView,
     TaskUpdateView,
+    TaskDeleteView,
 
 )
 
@@ -16,7 +17,11 @@ urlpatterns = [
         TaskUpdateView.as_view(),
         name="task-update"
     ),
-
+    path(
+        "tasks/<int:pk>/delete/",
+        TaskDeleteView.as_view(),
+        name="task-delete"
+    ),
 ]
 
 app_name = "todo"
