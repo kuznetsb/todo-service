@@ -2,4 +2,29 @@
 
 {% block content %}
   <h2>TODO list</h2>
+  <ul>
+    {% for task in task_list %}
+      <li>
+        <div class="row">
+          <h5>{{ task.content }} {% if task.is_done %} Done {% else %} Not done {% endif %}</h5>
+        </div>
+        <div class="row">
+          <p>
+            Created at {{ task.datetime }}
+            {% if task.deadline_datetime %} Deadline: {{ task.deadline_datetime }} {% endif %}
+          </p>
+        </div>
+        <div class="row">
+          <p>
+            Tags:
+            {% for tag in task.tags.all %}
+              {{ tag.name }}
+            {% empty %}
+              No tags yet
+            {% endfor %}
+          </p>
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
 {% endblock %}
