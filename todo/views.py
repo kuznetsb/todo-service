@@ -44,7 +44,7 @@ class TagUpdateView(generic.UpdateView):
     success_url = reverse_lazy("todo:tag-list")
 
 
-class TagDeleteView(generic.UpdateView):
+class TagDeleteView(generic.DeleteView):
     model = Tag
     fields = "__all__"
     success_url = reverse_lazy("todo:tag-list")
