@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="row ml-0">
+    <h2>Tags</h2>
+    <a href="{% url 'todo:tag-create' %}" class="btn btn-primary ml-auto mr-0">Add Tag</a>
+  </div>
+  <br>
+  {% if tag_list %}
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Update</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for tag in tag_list %}
+        <tr>
+          <th scope="row">{{ tag.name }}</th>
+          <td><a href="{% url 'todo:tag-update' pk=tag.id%}" class="btn btn-secondary">Update</a></td>
+          <td><a href="{% url 'todo:tag-delete' pk=tag.id%}" class="btn btn-secondary">Delete</a></td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>No tags yet</p>
+  {% endif %}
+
+{% endblock %}

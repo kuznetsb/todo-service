@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+  <p>Are you sure you want to delete {{ tag.name }} tag?</p>
+  <form action="" method="post" novalidate>
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <input type="submit" value="Yes" class="btn btn-danger">
+    <a href="{% url 'todo:tag-list'%}" class="btn btn-secondary">Cancel</a>
+  </form>
+{% endblock %}
